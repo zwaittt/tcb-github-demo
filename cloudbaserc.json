@@ -1,0 +1,54 @@
+{
+  "version": "2.0",
+  "envId": "{{{{env.ENV_ID}}}}",
+  "$schema": "https://framework-1258016615.tcloudbaseapp.com/schema/latest.json",
+  "functionRoot": "cloudfunctions",
+  "framework": {
+    "name": "tcb-github-demo",
+    "plugins": {
+      "fn": {
+        "use": "@cloudbase/framework-plugin-function",
+        "inputs": {
+          "functionRootPath": "./cloudfunctions",
+          "functions": [
+            {
+              "name": "vod-upload-callback",
+              "installDependency": true,
+              "timeout": 5,
+              "envVariables": {
+                "SecretId": "{{env.SecretId}}",
+                "SecretKey": "{{env.SecretKey}}"
+              },
+              "runtime": "Nodejs10.15",
+              "memory": 128
+            }
+          ]
+        }
+      }
+    },
+    "requirement": {
+      "environment": {
+        "APPID": {
+          "description": "请填写腾讯云账号APPID",
+          "required": true,
+          "default": ""
+        },
+        "pushUrl": {
+          "description": "请填写腾讯云直播推流地址",
+          "required": true,
+          "default": ""
+        },
+        "SecretId": {
+          "description": "请填写云API SecretId",
+          "required": true,
+          "default": ""
+        },
+        "SecretKey": {
+          "description": "请填写云API SecretKey",
+          "required": true,
+          "default": ""
+        }
+      }
+    }
+  }
+}
